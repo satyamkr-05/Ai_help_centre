@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Smart Web Ecosystem</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="container dashboard-navbar">
+
+            <div class="dashboard-logo">
+                Smart Web Ecosystem
+            </div>
+
+            <nav>
+                <ul class="dashboard-links">
+
+                    <li>
+                        <a href="HomePage.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="dashboard.html" class="active">Dashboard</a>
+                    </li>
+
+                    <li>
+                        <a href="categories.html">Policies</a>
+                    </li>
+
+                    <li>
+                        <a href="history.html">History</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="dashboard-actions">
+
+                <input type="text" placeholder="Search Policies..." class="dashboard-search">
+
+                <a href="profile.html" class="profile-btn">
+                    My Profile
+                </a>
+
+                <a href="index.html" class="logout-btn">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="dashboard">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <h3>Policy Categories</h3>
+
+            <ul>
+
+                <li class="active">HR Policy</li>
+
+                <li>Leave Policy</li>
+
+                <li>Attendance</li>
+
+                <li>Work From Home</li>
+
+                <li>Holidays</li>
+
+                <li>Payroll</li>
+
+                <li>IT Support</li>
+
+                <li>Office Rules</li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Chat Area -->
+
+        <section class="chat-section">
+
+            <div class="chat-header">
+
+                <h2>AI Policy Assistant</h2>
+
+                <div class="chat-actions">
+
+                    <button class="copy-btn">
+                        Copy Response
+                    </button>
+
+                    <button class="clear-btn">
+                        Clear Chat
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="chat-window">
+
+                <div class="user-message">
+                    What is the leave policy?
+                </div>
+
+                <div class="ai-message">
+                    Employees are entitled to 12 casual leaves.
+                </div>
+
+                <div class="suggested-questions">
+
+                    <h5>Suggested Questions</h5>
+
+                    <div class="question-tags">
+                        <span>Leave Policy</span>
+                        <span>Attendance Rules</span>
+                        <span>Payroll Dates</span>
+                        <span>WFH Guidelines</span>
+                    </div>
+
+                </div>
+
+                <div class="chat-input">
+
+                    <input type="text" placeholder="Ask about company policies...">
+
+                    <button class="btn-primary">
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
