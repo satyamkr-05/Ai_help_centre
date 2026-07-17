@@ -4,6 +4,7 @@
 
 .dashboard-search{
     width: 240px;
+    min-width: 0;
     padding: 10px 15px;
     border: 1px solid #E5E7EB;
     border-radius: 12px;
@@ -23,7 +24,7 @@
     gap: 25px;
     padding: 25px;
 
-    height: calc(100vh - 75px);
+    min-height: calc(100vh - 75px);
 }
 
 /* =========================
@@ -32,6 +33,7 @@
 
 .sidebar{
     width: 260px;
+    flex-shrink: 0;
 
     background: #FFFFFF;
     border: 1px solid #E5E7EB;
@@ -64,6 +66,11 @@
     cursor: pointer;
 
     transition: all 0.25s ease;
+}
+
+.sidebar li a{
+    display: block;
+    width: 100%;
 }
 
 .sidebar li:hover{
@@ -109,6 +116,7 @@
 
 .chat-actions{
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -231,6 +239,7 @@
 
 .chat-input input{
     flex: 1;
+    min-width: 0;
 
     padding: 15px 18px;
 
@@ -260,6 +269,7 @@
     .dashboard{
         flex-direction: column;
         height: auto;
+        padding: 20px;
     }
 
     .sidebar{
@@ -286,10 +296,29 @@
     .chat-header{
         flex-direction: column;
         gap: 15px;
+        align-items: stretch;
+    }
+
+    .chat-actions{
+        justify-content: center;
+    }
+
+    .chat-window{
+        min-height: 520px;
     }
 }
 
 @media(max-width: 576px){
+
+    .dashboard{
+        padding: 16px;
+        gap: 18px;
+    }
+
+    .sidebar,
+    .chat-window{
+        padding: 18px;
+    }
 
     .chat-input{
         flex-direction: column;
@@ -306,5 +335,15 @@
 
     .dashboard-search{
         width: 100%;
+    }
+
+    .copy-btn,
+    .clear-btn,
+    .chat-input button{
+        width: 100%;
+    }
+
+    .chat-header h2{
+        text-align: center;
     }
 }

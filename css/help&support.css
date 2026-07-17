@@ -177,15 +177,6 @@
 }
 
 /* =========================
-   ACTIVE NAV LINK
-========================= */
-
-.nav-links a.active{
-    color: var(--primary);
-    font-weight: 600;
-}
-
-/* =========================
    RESPONSIVE
 ========================= */
 
@@ -207,6 +198,10 @@
         grid-template-columns: 1fr;
     }
 
+    .email-list p{
+        padding: 14px 16px;
+    }
+
 }
 
 @media(max-width:576px){
@@ -215,8 +210,20 @@
         font-size: 1.7rem;
     }
 
+    .page-title{
+        margin-bottom: 28px;
+    }
+
     .support-card{
         padding: 20px;
+    }
+
+    .faq-item{
+        padding: 16px 0;
+    }
+
+    .step-card{
+        padding: 18px;
     }
 
 }

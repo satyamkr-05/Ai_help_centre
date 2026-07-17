@@ -15,6 +15,7 @@
 
 .hero-text{
     flex: 1;
+    min-width: 0;
 }
 
 .badge{
@@ -54,6 +55,7 @@
     flex: 1;
     display: flex;
     justify-content: center;
+    min-width: 0;
 }
 
 .chat-card{
@@ -164,9 +166,16 @@
 
 @media (max-width: 992px){
 
+    .hero,
+    .features,
+    .how-it-works{
+        padding: 64px 0;
+    }
+
     .hero-content{
         flex-direction: column;
         text-align: center;
+        gap: 40px;
     }
 
     .hero-buttons{
@@ -196,8 +205,17 @@
         font-size: 2rem;
     }
 
+    .hero-text p{
+        font-size: 1rem;
+    }
+
     .hero-buttons{
         flex-direction: column;
+    }
+
+    .hero-buttons a{
+        width: 100%;
+        text-align: center;
     }
 
     .feature-grid{
@@ -206,5 +224,9 @@
 
     .chat-card{
         padding: 20px;
+    }
+
+    .step{
+        padding: 26px 20px;
     }
 }
