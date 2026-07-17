@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- Font Awesome 6 (free) for eye icon & user-plus -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="css/Login.css">
+  <link rel="stylesheet" href="css/global.css">
+
+</head>
+<body>
+  <form action="/submit.php" method="post" id="loginForm">
+    <h1>Welcome back</h1>
+
+    <div class="form-group">
+      <label for="emailPhone">Email or phone</label>
+      <div class="email-phone-wrapper">
+        <input 
+          type="text" 
+          id="emailPhone" 
+          name="emailPhone"
+          placeholder="name@company.com or +91 45 677 " 
+          required
+          pattern="^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|[0-9]{10})$"
+          title="Enter a valid email address or 10-digit phone number"
+        >
+      </div>
+      <span class="validation-hint" id="validationHint"><i class="far fa-envelope"></i> Email or 10‑digit phone</span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" placeholder="Enter password" required minlength="6">
+        <button type="button" class="toggle-password" id="togglePasswordBtn" aria-label="Toggle password visibility">
+          <i class="fas fa-eye"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="signup-wrapper">
+      <a href="Registeration.html" class="signup-link">
+        <i class="fas fa-user-plus"></i> Create account
+      </a>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 0;">
+      <input type="submit" value="Login">
+    </div>
+  </form>
+
+  <script>
+    (function() {
+      // ----- PASSWORD TOGGLE -----
+      const passwordInput = document.getElementById('password');
+      const toggleBtn = document.getElementById('togglePasswordBtn');
+      const icon = toggleBtn?.querySelector('i');
+
+      if (passwordInput && toggleBtn && icon) {
+        function toggleVisibility() {
+          const isPassword = passwordInput.type === 'password';
+          passwordInput.type = isPassword ? 'text' : 'password';
+          icon.className = isPassword ? 'fas fa-eye-slash' : 'fas fa-eye';
+          passwordInput.focus();
+        }
+
+        toggleBtn.addEventListener('click', toggleVisibility);
+        toggleBtn.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Space' || e.key === 'Enter') {
+            e.preventDefault();
+            toggleVisibility();
+          }
+        });
+      }
+
+      // ----- EMAIL/PHONE VALIDATION HINT (corporate friendly) -----
+      const emailPhoneInput = document.getElementById('emailPhone');
+      const validationHint = document.getElementById('validationHint');
+
+      if (emailPhoneInput && validationHint) {
+        function updateHint() {
+          const value = this.value.trim();
+          
+          if (value.length === 0) {
+            validationHint.innerHTML = '<i class="far fa-envelope"></i> Email or 10‑digit phone';
+            validationHint.className = 'validation-hint';
+            return;
+          }
+
+          const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          const phonePattern = /^[0-9]{10}$/;
+
+          if (emailPattern.test(value)) {
+            validationHint.innerHTML = '<i class="fas fa-check-circle" style="color:#10B981;"></i> Valid email';
+            validationHint.className = 'validation-hint active';
+            validationHint.style.color = '#10B981';
+          } else if (phonePattern.test(value)) {
+            validationHint.innerHTML = '<i class="fas fa-check-circle" style="color:#10B981;"></i> Valid phone';
+            validationHint.className = 'validation-hint active';
+            validationHint.style.color = '#10B981';
+          } else {
+            validationHint.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#F59E0B;"></i> Use email or 10‑digit phone';
+            validationHint.className = 'validation-hint active';
+            validationHint.style.color = '#D97706';
+          }
+        }
+
+        emailPhoneInput.addEventListener('input', updateHint);
+
+        emailPhoneInput.addEventListener('blur', function() {
+          const value = this.value.trim();
+          if (value.length === 0) {
+            validationHint.innerHTML = '<i class="far fa-envelope"></i> Email or 10‑digit phone';
+            validationHint.className = 'validation-hint';
+            validationHint.style.color = '#64748B';
+            return;
+          }
+          const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          const phonePattern = /^[0-9]{10}$/;
+          if (!emailPattern.test(value) && !phonePattern.test(value)) {
+            validationHint.innerHTML = '<i class="fas fa-times-circle" style="color:#EF4444;"></i> Invalid format';
+            validationHint.className = 'validation-hint active';
+            validationHint.style.color = '#EF4444';
+          }
+        });
+      }
+
+      // ----- FORM SUBMIT VALIDATION -----
+      const form = document.getElementById('loginForm');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          const emailPhone = document.getElementById('emailPhone');
+          const password = document.getElementById('password');
+          
+          if (!emailPhone.value.trim() || !password.value.trim()) {
+            e.preventDefault();
+            alert('Please fill in all fields');
+            return;
+          }
+
+          const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          const phonePattern = /^[0-9]{10}$/;
+          const value = emailPhone.value.trim();
+          
+          if (!emailPattern.test(value) && !phonePattern.test(value)) {
+            e.preventDefault();
+            alert('Please enter a valid email address or 10-digit phone number');
+            emailPhone.focus();
+            return;
+          }
+
+          console.log('Form submitted successfully');
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
