@@ -1,58 +1,6 @@
 /* =========================
    DASHBOARD HEADER
 ========================= */
-.dashboard-header{
-    background: #FFFFFF;
-    border-bottom: 1px solid #E5E7EB;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.dashboard-navbar{
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.dashboard-logo{
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #2563EB;
-}
-
-.dashboard-links{
-    display: flex;
-    gap: 25px;
-}
-
-.dashboard-links a{
-    color: #111827;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.dashboard-links a:hover{
-    color: #2563EB;
-}
-.dashboard-links a.active{
-    background: #DBEAFE;
-    color: #2563EB;
-
-    padding: 8px 14px;
-    border-radius: 10px;
-
-    font-weight: 600;
-}
-
-.dashboard-actions{
-    display: flex;
-    align-items: center;
-    gap: 19px;
-    
-}
 
 .dashboard-search{
     width: 240px;
@@ -65,36 +13,6 @@
 .dashboard-search:focus{
     border-color: #2563EB;
 }
-
-.profile-btn{
-    padding: 10px 18px;
-    border: 1px solid #E5E7EB;
-    border-radius: 12px;
-    font-weight: 500;
-    transition: 0.3s;
-    margin: auto;
-}
-
-.profile-btn:hover{
-    border-color: #2563EB;
-    color: #2563EB;
-}
-
-.logout-btn{
-    padding: 10px 18px;
-    background: #2563EB;
-    color: white;
-    border-radius: 12px;
-    font-weight: 500;
-    transition: 0.3s;
-    margin: auto;
-    
-}
-
-.logout-btn:hover{
-    background: #1E40AF;
-}
-
 
 /* =========================
    DASHBOARD LAYOUT

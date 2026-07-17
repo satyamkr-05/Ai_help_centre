@@ -1,0 +1,222 @@
+/* =========================
+   SUPPORT PAGE
+========================= */
+
+.support-page{
+    padding: 40px 0 60px;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+.page-title{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-title h1{
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text);
+
+    margin-bottom: 12px;
+}
+
+.page-title p{
+    max-width: 700px;
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* =========================
+   SUPPORT CARDS
+========================= */
+
+.support-card{
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    padding: 28px;
+
+    margin-bottom: 24px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+
+    transition: 0.3s ease;
+}
+
+.support-card:hover{
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.support-card h2{
+    color: var(--primary);
+
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+/* =========================
+   HOW TO USE
+========================= */
+
+.steps{
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+
+    gap: 20px;
+}
+
+.step-card{
+    background: #F8FAFC;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    padding: 20px;
+
+    transition: 0.3s ease;
+}
+
+.step-card:hover{
+    transform: translateY(-3px);
+
+    border-color: var(--primary);
+}
+
+.step-card h3{
+    color: var(--primary);
+
+    margin-bottom: 10px;
+
+    font-size: 1.1rem;
+}
+
+.step-card p{
+    color: var(--text-secondary);
+
+    line-height: 1.6;
+}
+
+/* =========================
+   FAQ SECTION
+========================= */
+
+.faq-item{
+    padding: 18px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.faq-item:last-child{
+    border-bottom: none;
+}
+
+.faq-item h4{
+    color: var(--text);
+
+    font-size: 1rem;
+
+    margin-bottom: 8px;
+}
+
+.faq-item p{
+    color: var(--text-secondary);
+
+    line-height: 1.6;
+}
+
+/* =========================
+   CONTACT SUPPORT
+========================= */
+
+.support-card p{
+    color: var(--text-secondary);
+
+    line-height: 1.7;
+}
+
+/* =========================
+   EMAIL INFORMATION
+========================= */
+
+.email-list{
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.email-list p{
+    padding: 14px 18px;
+
+    background: #F8FAFC;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition: 0.3s ease;
+}
+
+.email-list p:hover{
+    border-color: var(--primary);
+
+    background: #EFF6FF;
+}
+
+.email-list strong{
+    color: var(--text);
+}
+
+/* =========================
+   ACTIVE NAV LINK
+========================= */
+
+.nav-links a.active{
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .support-page{
+        padding: 30px 0 50px;
+    }
+
+    .page-title h1{
+        font-size: 1.9rem;
+    }
+
+    .support-card{
+        padding: 22px;
+    }
+
+    .steps{
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .page-title h1{
+        font-size: 1.7rem;
+    }
+
+    .support-card{
+        padding: 20px;
+    }
+
+}
