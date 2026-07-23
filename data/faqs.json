@@ -1,0 +1,42 @@
+[
+    {
+        "question": "What is the leave policy?",
+        "answer": "Employees are entitled to 12 casual leaves, 10 sick leaves, and 18 earned leaves annually.",
+        "keywords": ["leave", "holiday", "vacation"]
+    },
+    {
+        "question": "What are the office timings?",
+        "answer": "Office hours are 9:00 AM to 6:00 PM, Monday to Friday.",
+        "keywords": ["timing", "office", "hours"]
+    },
+    {
+        "question": "What is the dress code?",
+        "answer": "Business casual dress code is followed.",
+        "keywords": ["dress", "code", "wear"]
+    },
+    {
+        "question": "Can I work from home?",
+        "answer": "Work from home allowed for 2 days per week.",
+        "keywords": ["wfh", "home", "remote"]
+    },
+    {
+        "question": "What are the employee benefits?",
+        "answer": "Health insurance, paid leaves, flexible hours.",
+        "keywords": ["benefits", "perks", "insurance"]
+    },
+    {
+        "question": "What is the payroll policy?",
+        "answer": "Payroll processed on 1st of every month.",
+        "keywords": ["payroll", "salary", "payment"]
+    },
+    {
+        "question": "What is the attendance policy?",
+        "answer": "Attendance tracked via biometric system.",
+        "keywords": ["attendance", "late", "biometric"]
+    },
+    {
+        "question": "What is the HR policy?",
+        "answer": "HR policy includes hiring, termination, performance management.",
+        "keywords": ["hr", "human", "resource"]
+    }
+]

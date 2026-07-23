@@ -151,5 +151,224 @@
         </div>
     </footer>
 
+    <!-- ============ CHAT WIDGET HTML ============ -->
+<!-- Chat Toggle Button -->
+<button id="chatToggleBtn" style="
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #667eea;
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    z-index: 999;
+">
+    💬
+</button>
+
+<!-- Chat Widget -->
+<div id="chatWidget" style="
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 380px;
+    max-width: 90vw;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    max-height: 500px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    z-index: 1000;
+">
+    <div style="background: #667eea; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="margin: 0; font-size: 16px;">🤖 AI Help Centre</h3>
+        <button id="chatCloseBtn" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">✕</button>
+    </div>
+
+    <div id="chatMessages" style="flex: 1; padding: 15px; overflow-y: auto; max-height: 350px; background: #f8f9fa;">
+        <div style="background: white; padding: 10px 14px; border-radius: 12px; margin-bottom: 12px; max-width: 85%; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <strong>AI:</strong> 👋 Hello! Ask me about Leave, Attendance, Payroll, WFH, Benefits, Dress Code, or HR policies.
+        </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px; background: #f8f9fa; border-top: 1px solid #ddd;">
+        <button onclick="askQuestion('What is the leave policy?')" style="background: white; border: 1px solid #ddd; border-radius: 20px; padding: 4px 12px; font-size: 12px; cursor: pointer;">📅 Leave</button>
+        <button onclick="askQuestion('What are attendance rules?')" style="background: white; border: 1px solid #ddd; border-radius: 20px; padding: 4px 12px; font-size: 12px; cursor: pointer;">⏰ Attendance</button>
+        <button onclick="askQuestion('When is payroll processed?')" style="background: white; border: 1px solid #ddd; border-radius: 20px; padding: 4px 12px; font-size: 12px; cursor: pointer;">💰 Payroll</button>
+        <button onclick="askQuestion('What are WFH guidelines?')" style="background: white; border: 1px solid #ddd; border-radius: 20px; padding: 4px 12px; font-size: 12px; cursor: pointer;">🏠 WFH</button>
+    </div>
+
+    <div style="display: flex; padding: 12px; border-top: 1px solid #ddd; background: white; gap: 10px;">
+        <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()" style="flex: 1; padding: 10px 14px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 14px;">
+        <button onclick="sendMessage()" style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: 600;">Send</button>
+    </div>
+</div>
+
+<script>
+    // ===================== CHAT JAVASCRIPT =====================
+
+    const chatToggleBtn = document.getElementById('chatToggleBtn');
+    const chatCloseBtn = document.getElementById('chatCloseBtn');
+    const chatWidget = document.getElementById('chatWidget');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    // Toggle Chat
+    chatToggleBtn.addEventListener('click', function() {
+        if (chatWidget.style.display === 'none' || chatWidget.style.display === '') {
+            chatWidget.style.display = 'flex';
+            chatToggleBtn.textContent = '✕';
+            chatInput.focus();
+        } else {
+            chatWidget.style.display = 'none';
+            chatToggleBtn.textContent = '💬';
+        }
+    });
+
+    chatCloseBtn.addEventListener('click', function() {
+        chatWidget.style.display = 'none';
+        chatToggleBtn.textContent = '💬';
+    });
+
+    // Add Message Function
+    function addMessage(type, content) {
+        const msgDiv = document.createElement('div');
+        
+        if (type === 'user') {
+            msgDiv.style.cssText = `
+                background: #667eea;
+                color: white;
+                padding: 10px 14px;
+                border-radius: 12px;
+                margin-bottom: 12px;
+                max-width: 85%;
+                margin-left: auto;
+                border-bottom-right-radius: 4px;
+                word-wrap: break-word;
+            `;
+        } else {
+            msgDiv.style.cssText = `
+                background: white;
+                color: #333;
+                padding: 10px 14px;
+                border-radius: 12px;
+                margin-bottom: 12px;
+                max-width: 85%;
+                margin-right: auto;
+                border-bottom-left-radius: 4px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                word-wrap: break-word;
+            `;
+        }
+        
+        msgDiv.innerHTML = content;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Typing Indicator
+    function showTyping() {
+        const typing = document.createElement('div');
+        typing.id = 'typingIndicator';
+        typing.style.cssText = `
+            background: white;
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 60px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        `;
+        typing.innerHTML = `
+            <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#667eea;margin:0 2px;animation:typing 1.4s infinite both;"></span>
+            <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#667eea;margin:0 2px;animation:typing 1.4s infinite both;animation-delay:0.2s;"></span>
+            <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#667eea;margin:0 2px;animation:typing 1.4s infinite both;animation-delay:0.4s;"></span>
+        `;
+        
+        // Add animation if not exists
+        if (!document.getElementById('typingStyle')) {
+            const style = document.createElement('style');
+            style.id = 'typingStyle';
+            style.textContent = `
+                @keyframes typing {
+                    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+                    40% { transform: scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        chatMessages.appendChild(typing);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTyping() {
+        const typing = document.getElementById('typingIndicator');
+        if (typing) typing.remove();
+    }
+
+    // Send Message to Backend
+    async function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Show user message
+        addMessage('user', message);
+        chatInput.value = '';
+        chatInput.disabled = true;
+
+        // Show typing
+        showTyping();
+
+        try {
+            const response = await fetch('/api/chat/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            hideTyping();
+            chatInput.disabled = false;
+            chatInput.focus();
+
+            if (data.success) {
+                addMessage('ai', `<strong>AI:</strong> ${data.reply}`);
+            } else {
+                addMessage('ai', `<strong>AI:</strong> ❌ Sorry, couldn't process that. Please try again.`);
+            }
+
+        } catch (error) {
+            hideTyping();
+            chatInput.disabled = false;
+            addMessage('ai', `<strong>AI:</strong> ❌ Network error. Please check your connection.`);
+            console.error('Chat error:', error);
+        }
+    }
+
+    // Ask suggested question
+    function askQuestion(question) {
+        chatInput.value = question;
+        sendMessage();
+    }
+
+    // Close chat on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && chatWidget.style.display === 'flex') {
+            chatWidget.style.display = 'none';
+            chatToggleBtn.textContent = '💬';
+        }
+    });
+
+    console.log('✅ AI Chat Widget Loaded!');
+</script>
+
 </body>
 </html>
